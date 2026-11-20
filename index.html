@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#073b32" />
+    <meta name="description" content="Sepolia Bank DApp สำหรับ Week 7" />
+    <title>Sepolia Bank | Week 7</title>
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Sepolia Bank home">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Sepolia Bank</span>
+        </a>
+        <div class="topbar-controls">
+          <div class="network-pill"><span class="network-dot"></span> Sepolia Testnet</div>
+          <button class="preference" id="language-toggle" type="button" aria-label="Switch to English">EN</button>
+          <button class="preference" id="theme-toggle" type="button" aria-label="โหมดมืด" aria-pressed="false"><span aria-hidden="true">☾</span></button>
+        </div>
+      </header>
+
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">SMART CONTRACT LAB · 07</p>
+          <h1><span class="hero-title" data-en="Bank account">บัญชีธนาคาร</span> <span>Sepolia</span></h1>
+          <div class="student-card">
+            <span class="student-label" data-en="By">ผู้จัดทำ</span>
+            <strong id="student-name">นายจริยธรรม มาสงค์</strong>
+            <span id="student-id" data-en="Student ID 66092559">รหัสนักศึกษา 66092559</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit-spark"></div>
+          <div class="coin"><span>Ξ</span></div>
+        </div>
+      </section>
+
+      <details class="rpc-panel">
+        <summary data-en="Balance provider · MetaMask or Infura">ช่องทางอ่านยอด · MetaMask หรือ Infura</summary>
+        <form id="rpc-form">
+          <label for="rpc-input" data-en="Infura API key or Sepolia HTTPS endpoint">Infura API key หรือ Sepolia HTTPS endpoint</label>
+          <div class="rpc-actions">
+            <input id="rpc-input" type="password" placeholder="https://sepolia.infura.io/v3/…" autocomplete="off" spellcheck="false" required />
+            <button class="button button-dark" type="submit" data-en="Connect Infura">เชื่อม Infura</button>
+            <button class="button button-outline" id="reset-rpc" type="button" data-en="Use MetaMask">ใช้ MetaMask</button>
+          </div>
+        </form>
+        <p id="rpc-status" role="status"></p>
+      </details>
+
+      <section class="dashboard" aria-label="บัญชีธนาคาร">
+        <div class="connect-panel">
+          <div>
+            <p class="panel-label" data-en="MetaMask wallet">กระเป๋า MetaMask</p>
+            <h2 id="wallet-status">ยังไม่ได้เชื่อมต่อ</h2>
+            <p class="muted" id="wallet-address">เชื่อม MetaMask เพื่อเริ่มใช้งาน</p>
+          </div>
+          <div class="wallet-actions">
+            <button class="button button-outline" id="switch-network-button" type="button" data-en="Switch to Sepolia" hidden>สลับไป Sepolia</button>
+            <button class="button button-dark" id="connect-button" type="button">เชื่อมต่อ MetaMask</button>
+          </div>
+        </div>
+
+        <div class="balance-card">
+          <div class="balance-heading">
+            <div>
+              <p class="panel-label" data-en="Deposited balance">ยอดฝากในสัญญา</p>
+              <h2><span id="balance-value">—</span> <small>ETH</small></h2>
+            </div>
+          </div>
+          <p class="muted" data-en="For the connected MetaMask account">เฉพาะบัญชี MetaMask ที่เชื่อมต่ออยู่</p>
+          <button class="button balance-button" id="refresh-button" type="button" data-en="↻ Check balance">↻ ตรวจยอดเงิน</button>
+        </div>
+
+        <section class="transfer-panel" aria-labelledby="transfer-title">
+          <h2 id="transfer-title" data-en="Deposit and withdraw ETH">ฝากและถอน ETH</h2>
+          <div class="action-grid">
+          <form class="action-card" id="deposit-form">
+            <div class="action-icon deposit-icon" aria-hidden="true">↓</div>
+            <label for="deposit-amount" data-en="Deposit amount">จำนวนที่ฝาก</label>
+            <div class="amount-input"><input id="deposit-amount" name="amount" inputmode="decimal" placeholder="0.01" autocomplete="off" required /><span>ETH</span></div>
+            <button class="button button-primary" type="submit" data-en="Deposit">ฝากเงิน</button>
+          </form>
+
+          <form class="action-card" id="withdraw-form">
+            <div class="action-icon withdraw-icon" aria-hidden="true">↑</div>
+            <label for="withdraw-amount" data-en="Withdrawal amount">จำนวนที่ถอน</label>
+            <div class="amount-input"><input id="withdraw-amount" name="amount" inputmode="decimal" placeholder="0.01" autocomplete="off" required /><span>ETH</span></div>
+            <button class="button button-outline" type="submit" data-en="Withdraw">ถอนเงิน</button>
+          </form>
+          </div>
+        </section>
+
+        <section class="activity-card" aria-labelledby="activity-title">
+          <h2 id="activity-title" data-en="Activity">สถานะการใช้งาน</h2>
+          <div class="status-panel" id="status-panel" role="status" aria-live="polite">
+            <span class="status-indicator"></span>
+            <span id="status-message">เชื่อม MetaMask เพื่อเริ่มใช้งาน</span>
+          </div>
+        </section>
+        <section class="contract-card" aria-labelledby="contract-title">
+          <div class="contract-heading">
+            <h2 id="contract-title" data-en="Bank contract">สัญญา Bank</h2>
+            <button class="button button-outline" id="copy-contract" type="button" data-en="Copy address">คัดลอกที่อยู่</button>
+          </div>
+          <code id="contract-address"></code>
+          <a id="contract-explorer" target="_blank" rel="noopener noreferrer" data-en="View on Sepolia Etherscan ↗">ดูบน Sepolia Etherscan ↗</a>
+          <span class="copy-feedback" id="copy-feedback" role="status"></span>
+        </section>
+        <p class="footer-note" data-en="Review and confirm deposits and withdrawals in MetaMask.">การฝากและถอนจะเปิด MetaMask ให้ตรวจสอบและยืนยันธุรกรรมทุกครั้ง</p>
+      </section>
+    </main>
+  </body>
+</html>
