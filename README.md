@@ -1,6 +1,6 @@
 <div align="center">
 
-# Sepolia Bank · Week 7
+# Sepolia Bank · infura
 
 ทดลองฝาก ถอน และตรวจยอดกับ Smart Contract บน Ethereum Sepolia  
 **นายจริยธรรม มาสงค์ · รหัสนักศึกษา 66092559**
